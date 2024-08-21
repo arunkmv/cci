@@ -425,7 +425,7 @@ public:
     ///@copydoc cci_param_if::reset
     virtual bool reset();
 
-    ~cci_param_typed()
+    virtual ~cci_param_typed()
       { destroy(m_broker_handle); }
 
 protected:
