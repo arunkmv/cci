@@ -34,14 +34,16 @@ cci_param_untyped_handle::
                           , const cci_originator & originator )
   : m_param(&param)
   , m_originator(originator)
+  , m_handled_parname(param.name())
 {
     m_param->add_param_handle(this);
 }
 
-cci_param_untyped_handle::
-  cci_param_untyped_handle(const cci_originator & originator)
+cci_param_untyped_handle::cci_param_untyped_handle( const cci_originator &originator
+						   , const std::string& handled_parname)
   : m_param(NULL)
   , m_originator(originator)
+  , m_handled_parname(handled_parname)
 {}
 
 cci_param_untyped_handle::~cci_param_untyped_handle()
@@ -301,8 +303,8 @@ void cci_param_untyped_handle::check_is_valid() const
 {
     bool invalid_error = !is_valid();
     if(invalid_error) {
-        CCI_REPORT_ERROR("cci_param_untyped_handle/check_is_valid",
-                         "The handled parameter is not valid.");
+        std::string err_msg = std::string("The handled parameter is not valid: ") + m_handled_parname;
+        CCI_REPORT_ERROR("cci_param_untyped_handle/check_is_valid", err_msg.c_str());
         cci_abort(); // cannot recover from here
     }
 }

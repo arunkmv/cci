@@ -142,7 +142,7 @@ namespace cci_utils {
     if (has_parent) {
       return m_parent.get_param_handle(parname, originator);
     }
-    return cci_param_untyped_handle(originator);
+    return cci_param_untyped_handle(originator, parname);
   }
 
 

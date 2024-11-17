@@ -207,7 +207,7 @@ namespace cci_utils {
     if (orig_param) {
       return cci_param_untyped_handle(*orig_param, originator);
     }
-    return cci_param_untyped_handle(originator);
+    return cci_param_untyped_handle(originator, parname);
   }
 
   bool consuming_broker::has_preset_value(const std::string &parname) const

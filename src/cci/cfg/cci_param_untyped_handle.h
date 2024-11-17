@@ -51,7 +51,7 @@ public:
                              const cci_originator& originator);
 
     /// Constructor to create an invalid param handle with given originator.
-    explicit cci_param_untyped_handle(const cci_originator& originator = cci_originator());
+    explicit cci_param_untyped_handle(const cci_originator& originator = cci_originator(), const std::string& handled_parname = "");
 
     /// Copy constructor
     cci_param_untyped_handle(const cci_param_untyped_handle& param_handle);
@@ -272,6 +272,7 @@ protected:
 private:
     cci_param_if*  m_param;
     cci_originator m_originator;
+    const std::string m_handled_parname;
 
     /// Check handled parameter is valid
     /**
